@@ -3,10 +3,12 @@ import { store } from './store';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import Home from './containers/Home';
-import Error404 from './containers/errors/Error404.JSX';
+import Error404 from './containers/errors/Error404.jsx';
 import Signup from './containers/auth/Signup';
 import Activate from './containers/auth/Activate';
 import Signin from './containers/auth/Signin';
+import ResetPassword from './containers/auth/ResetPassword';
+import ResetPasswordConfirm from './containers/auth/ResetPasswordConfirm';
 
 function App() {
   return (
@@ -18,6 +20,9 @@ function App() {
           <Route excact path='/signin' element={< Signin />} />
           <Route excact path='/signup' element={< Signup />} />
           <Route excact path='/activate/:uid/:token' element={< Activate />} />
+          <Route excact path='/reset_password' element={< ResetPassword />} />
+          <Route excact path='/password/reset/confirm/:uid/:token' element={< ResetPasswordConfirm />} />
+
         </Routes>
       </Router>
     </Provider>

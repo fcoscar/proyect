@@ -12,8 +12,14 @@ import {
   USER_REQUEST,
   AUTHENTICATED_FAIL,
   AUTHENTICATED_SUCCESS,
+  AUTHENTICATED_REQUEST,
   REFRESH_FAIL,
   REFRESH_SUCCESS,
+  SIGNOUT_SUCCESS,
+  RESET_LINK_SUCCESS,
+  RESET_LINK_FAIL,
+  RESET_CONFIRMATION_SUCCESS,
+  RESET_CONFIRMATION_FAIL,
 } from "../constants/auth";
 
 const initialState = {
@@ -29,10 +35,16 @@ export const Auth = (state = initialState, action) => {
 
   switch (type) {
     /* AUTHENTICATED */
+    case AUTHENTICATED_REQUEST:
+      return {
+        ...state,
+        loading:true
+      }
     case AUTHENTICATED_SUCCESS:
         return {
             ...state,
-            isAuthenticated: true
+            isAuthenticated: true,
+            loading:false
         }
     case AUTHENTICATED_FAIL:
         localStorage.removeItem('access')
@@ -41,7 +53,8 @@ export const Auth = (state = initialState, action) => {
             ...state,
             access: null,
             refresh: null,
-            isAuthenticated: false
+            isAuthenticated: false,
+            loading:false
         }
     /* REFRESH */
     case REFRESH_SUCCESS:
@@ -89,12 +102,28 @@ export const Auth = (state = initialState, action) => {
         error: payload,
         loading: false,
       };
+    /* SIGN OUT */
+    case SIGNOUT_SUCCESS:
+      localStorage.removeItem('access')
+      localStorage.removeItem('refresh')
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
+        access: null,
+        refresh:null
+      }
     /* Activation */
     case ACTIVATE_ERROR:
       return {
         ...state,
       };
     case ACTIVATE_SUCCESS:
+    /* RESET PASSWORD*/
+    case RESET_LINK_SUCCESS:
+    case RESET_LINK_FAIL:
+    case RESET_CONFIRMATION_SUCCESS:
+    case RESET_CONFIRMATION_FAIL:
     /* USER */
     case USER_REQUEST:
         return {

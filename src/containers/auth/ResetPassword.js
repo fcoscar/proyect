@@ -1,19 +1,18 @@
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Layout from "../../hocs/Layout";
-import { signin } from "../../redux/actions/auth";
+import { passwordReset } from "../../redux/actions/auth";
 
-export default function Signin() {
+export default function ResetPassword() {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: ''
   });
 
-  const { email, password } = formData;
+  const { email } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,7 +20,7 @@ export default function Signin() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(signin(email, password));
+    dispatch(passwordReset(email))
     navigate('/');
   };
 
@@ -36,8 +35,11 @@ export default function Signin() {
               alt="Your Company"
             />
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Sign in to your account
+                Reset your password
             </h2>
+            <h3 className="mt-6 text-center text-md font-extralight tracking-tight text-gray-900">
+                (We will send you a link to your email to reset your password)
+            </h3>
           </div>
           <form className="mt-8 space-y-6" onSubmit={(e) => onSubmit(e)}>
             <input type="hidden" name="remember" defaultValue="true" />
@@ -53,50 +55,9 @@ export default function Signin() {
                   value={email}
                   onChange={(e) => onChange(e)}
                   required
-                  className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Email address"
                 />
-              </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  value={password}
-                  name="password"
-                  type="password"
-                  onChange={(e) => onChange(e)}
-                  required
-                  className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  placeholder="Password"
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                />
-                <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-900"
-                >
-                  Remember me
-                </label>
-              </div>
-
-              <div className="text-sm">
-                <Link
-                  to="/reset_password"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  Forgot your password?
-                </Link>
               </div>
             </div>
 
@@ -111,7 +72,7 @@ export default function Signin() {
                     aria-hidden="true"
                   />
                 </span>
-                Sign in
+                Send email
               </button>
             </div>
           </form>
