@@ -14,9 +14,8 @@ const Layout = (props) => {
         dispatch(refresh())
         dispatch(check_authenticated())
         dispatch(getCurrenteUser())
-    })
-    
-    
+    },[])
+
     return(
         <div>
             <Navbar />
@@ -24,7 +23,6 @@ const Layout = (props) => {
             {props.children}
             <Footer />
         </div>
-
     )
 }
 

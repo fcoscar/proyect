@@ -111,7 +111,6 @@ export function Navbar() {
     dispatch(signout())
     setRedirect(true)
   }
-  
 
   const authLinks = (
     <Menu as="div" className="relative inline-block text-left">
@@ -208,9 +207,10 @@ export function Navbar() {
     </Fragment>
   );
   return (
-    <Popover className="relative bg-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+    <>
+    <Popover className="relative bg-white border-b-2 border-gray-100">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 ">
+        <div className="flex items-center justify-between  py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <a href="/">
               <span className="sr-only">Your Company</span>
@@ -303,12 +303,12 @@ export function Navbar() {
               )}
             </Popover>
 
-            <a
-              href="#"
+            <Link
+              to="/explore"
               className="text-base font-medium text-gray-500 hover:text-gray-900"
             >
-              Pricing
-            </a>
+              Alquilar
+            </Link>
             <a
               href="#"
               className="text-base font-medium text-gray-500 hover:text-gray-900"
@@ -422,7 +422,6 @@ export function Navbar() {
           )}
         </div>
       </div>
-
       <Transition
         as={Fragment}
         enter="duration-200 ease-out"
@@ -520,5 +519,6 @@ export function Navbar() {
         </Popover.Panel>
       </Transition>
     </Popover>
+      </>
   );
 }

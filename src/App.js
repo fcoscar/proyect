@@ -9,6 +9,7 @@ import Activate from './containers/auth/Activate';
 import Signin from './containers/auth/Signin';
 import ResetPassword from './containers/auth/ResetPassword';
 import ResetPasswordConfirm from './containers/auth/ResetPasswordConfirm';
+import Explore from './containers/Explore';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route excact path='/activate/:uid/:token' element={< Activate />} />
           <Route excact path='/reset_password' element={< ResetPassword />} />
           <Route excact path='/password/reset/confirm/:uid/:token' element={< ResetPasswordConfirm />} />
+          <Route excact path='/explore' element={< Explore />} />
+
 
         </Routes>
       </Router>

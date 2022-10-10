@@ -23,8 +23,6 @@ import {
   RESET_CONFIRMATION_SUCCESS,
 } from "../constants/auth";
 export const check_authenticated = () => async (dispatch) => {
-  
-
 
   if (localStorage.getItem("access")) {
 
@@ -238,6 +236,7 @@ export const refresh = () => async (dispatch) => {
       } else {
         dispatch({
           type: REFRESH_FAIL,
+          payload: res.statusText
         });
       }
     } catch (error) {

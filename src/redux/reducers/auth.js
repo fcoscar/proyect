@@ -62,9 +62,18 @@ export const Auth = (state = initialState, action) => {
         localStorage.setItem("refresh", payload.refresh);
         return {
             ...state,
-            access: localStorage.getItem('access')
+            access: localStorage.getItem('access'),
+            loading: false
         }       
     case REFRESH_FAIL:
+      return {
+        ...state,
+        access: null,
+        refresh: null,
+        isAuthenticated: false,
+        loading:false
+    }
+      
     /* Sign In*/
     case SIGNIN_REQUEST:
       return {
