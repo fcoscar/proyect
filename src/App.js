@@ -24,8 +24,6 @@ function App() {
           <Route excact path='/reset_password' element={< ResetPassword />} />
           <Route excact path='/password/reset/confirm/:uid/:token' element={< ResetPasswordConfirm />} />
           <Route excact path='/explore' element={< Explore />} />
-
-
         </Routes>
       </Router>
     </Provider>
