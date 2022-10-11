@@ -135,7 +135,7 @@ export default function Explore() {
         filters[0]['options'] = values2
       })
     }else {
-      if (brandUrl && brandUrl != 'Any') {
+      if (brandUrl && brandUrl !== 'Any') {
         fetch(`${process.env.REACT_APP_API_URL}/api/category/models/${brandUrl}`)
           .then((res) => res.json())
           .then((data) => {
@@ -153,8 +153,6 @@ export default function Explore() {
       }
     }
     }
-
- 
 
 
   return (
