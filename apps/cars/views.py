@@ -5,13 +5,10 @@ from .serializers import CarSerializer
 from rest_framework.response import Response
 from django.db.models import Q
 
-
-
 # Create your views here.
 
 @api_view(['GET'])
 def get_cars(request):
-
     brand = request.query_params.get('brand') if request.query_params.get('brand') is not None else 'Any'
     tipo = request.query_params.get('tipo') if request.query_params.get('tipo') is not None else 'Any'
     model = request.query_params.get('model') if request.query_params.get('model') is not None else 'Any'

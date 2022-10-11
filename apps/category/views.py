@@ -34,5 +34,16 @@ def get(request):
             result.append(brands)
         return Response({'categories': result}, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def getModels(request, brand):
+    result = []
+    if ModelsAndTypes.objects.filter(category__name=brand).exists():
+        models = ModelsAndTypes.objects.filter(category__name=brand)
+        for model in models:
+            if model.parent:
+                result.append(model.name)
+        return Response({'model': result}, status=status.HTTP_200_OK)
+
 
 
