@@ -106,11 +106,6 @@ export default function Explore() {
 
   }
 
-  const manageFilter = (filter) => {
-    setParams(params.set('brands', filter))
-    console.log(params.toString())
-  }
-
   useEffect(() => {
     dispacth(get_categories())
 
